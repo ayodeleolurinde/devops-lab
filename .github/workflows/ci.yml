@@ -1,0 +1,21 @@
+name: CI Network Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-network:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Make Script Executable
+        run: chmod +x check_network.sh
+
+      - name: Run Network Check Script
+        run: ./check_network.sh
