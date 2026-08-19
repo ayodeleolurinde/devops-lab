@@ -17,6 +17,9 @@ jobs:
       - name: Run ShellCheck Linter
         uses: ludeeus/action-shellcheck@master
 
+      - name: Make Scripts Executable
+        run: chmod +x *.sh
+
       - name: Run Database Connection Test
         env:
           DATABASE_USER: "admin_app"
