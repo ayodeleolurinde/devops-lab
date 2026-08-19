@@ -1,4 +1,4 @@
-name: CI Network Check and Linting
+name: CI Network Check, Linting, and Docker Build
 
 on:
   push:
@@ -17,8 +17,11 @@ jobs:
       - name: Run ShellCheck Linter
         uses: ludeeus/action-shellcheck@master
 
-      - name: Make Script Executable
-        run: chmod +x check_network.sh
+      - name: Run Database Connection Test
+        env:
+          DATABASE_USER: "admin_app"
+          DATABASE_PASS: ${{ secrets.DB_PASSWORD }}
+        run: ./database_connect.sh
 
-      - name: Run Network Check Script
-        run: ./check_network.sh
+      - name: Build Docker Image
+        run: docker build -t devops-lab-app:latest .
