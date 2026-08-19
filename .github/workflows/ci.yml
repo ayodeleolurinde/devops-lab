@@ -1,18 +1,21 @@
-name: CI Network Check
+name: CI Network Check and Linting
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main", "feature/*" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
-  test-network:
+  lint-and-test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Run ShellCheck Linter
+        uses: ludeeus/action-shellcheck@master
 
       - name: Make Script Executable
         run: chmod +x check_network.sh
