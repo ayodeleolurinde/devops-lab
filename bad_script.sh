@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Intentionally faulty script to test shellcheck
-echo $UNSET_VARIABLE
-cd /some_directory
+# Fixed script with proper syntax
+EXPLICIT_VAR="Hello DevOps"
+echo "$EXPLICIT_VAR"
+cd /tmp || exit 1
 ls
