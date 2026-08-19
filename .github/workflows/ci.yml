@@ -24,6 +24,7 @@ jobs:
         env:
           DATABASE_USER: "admin_app"
           DATABASE_PASS: ${{ secrets.DB_PASSWORD }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: ./database_connect.sh
 
       - name: Build Docker Image
